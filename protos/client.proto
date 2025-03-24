@@ -1,0 +1,61 @@
+syntax = "proto3";
+option go_package = "dfs/protogen/client";
+
+import "protos/common.proto";
+import "google/protobuf/timestamp.proto";
+
+message StoreRequest {
+	string key = 1;
+	uint64 size = 2;
+	bool finished = 3;
+}
+
+message StoreResponse {
+	string key = 1;
+	repeated ChunkInfo chunks = 2;
+}
+
+message GetRequest {
+	string key = 1;
+}
+
+message GetResponse {
+	string key = 1;
+	repeated ChunkInfo chunks = 2;
+}
+
+message ListRequest {
+	string prefix = 1;
+}
+
+message File {
+	string key = 1;
+	uint64 size = 2;
+	google.protobuf.Timestamp createdAt = 3;
+}
+
+message ListResponse {
+	repeated File files = 1;
+}
+
+message DeleteRequest {
+	string key = 1;
+}
+
+message DeleteResponse {
+	bool isCandiate = 1;
+}
+
+message NodeInfoRequest {
+	optional string nodeId = 1;
+}
+
+message NodeInfo {
+	string id = 1;
+	uint64 totalspace = 2;
+	uint64 freespace = 3;
+}
+
+message NodeInfoResponse {
+	repeated NodeInfo nodes = 1;
+}
