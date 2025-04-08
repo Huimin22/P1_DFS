@@ -125,3 +125,70 @@ Assuming you have started the `storage-node` and `controller`, here is a typical
    ```bash
    md5 /path/to/file.bin
    ```
+
+# How to Run on Orion Cluster 
+
+## 1. Start the Controller
+
+```bash
+./bin/controller -chunkSize 10485760
+```
+
+- `-chunkSize`: sets the chunk size (in bytes).
+
+---
+
+## 2. Start the Storage Node
+
+```bash
+./bin/storage-node \
+  -controllerAddr orion01.cs.usfca.edu:8081 \
+  -storePath /bigdata/students/hliu93 \
+  -listenAddr orion01.cs.usfca.edu:9001
+```
+
+- `-controllerAddr`: controller address
+- `-storePath`: storage file path
+- `-listenAddr`: storage node address and port
+
+---
+
+## 3. Storage Node File Path
+
+```bash
+cd /bigdata/students/hliu93
+```
+
+Check the folder named like:
+
+```
+storage-node-orion01.cs.usfca.edu_9001
+```
+
+You need to SSH into the corresponding Orion VM (e.g., `orion01`) to see it.
+
+---
+
+## 4. Test File
+
+Test image is located at:
+
+```
+/bigdata/mmalensek/project1/test_5.jpg
+```
+
+To verify file integrity:
+
+```bash
+md5sum test_5.jpg
+```
+
+---
+
+## 5. Home Directory
+
+```
+/home/hliu93
+```
+
+
